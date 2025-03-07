@@ -11,19 +11,28 @@ class Person {
     }
 }
 
-let persons = [
+const [persons, setPersons] = useState(() => [
     new Person("John", "Doe"),
     new Person("Jane", "Doe"),
     new Person("Alice", "Smith"),
     new Person("Bob", "Smith"),
-]
+]);
+
+const personRender = () => {
+    return PersonTable({data: persons});
+}
 
 function App() {
-    const [count, setCount] = useState(0)
+    const add = () => {
+        setPersons(prevPersons => [...prevPersons, new Person("kk", "ee")]);
+        console.log(persons.length + 1);
+    }
 
     return (
         <>
+            {personRender()}
             <PersonTable data={persons}/>
+            <button onClick={() => add()}>ee</button>
         </>
     )
 }
