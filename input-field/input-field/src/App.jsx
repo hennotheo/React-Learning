@@ -1,29 +1,20 @@
-import {useState} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Form from './components/Form';
-import Contacts from './components/Contacts';
+import React, {useState} from 'react';
+import LoginForm from './components/LoginForm';
 
-function App() {
-    const [contacts, setContacts] = useState([]);
+const App = () => {
+    const [feedback, setFeedback] = useState("");
 
-    const formSubmit = (contact) => {
-        setContacts([...contacts, {
-            id: contacts.length + 1,
-            name: contact.name,
-            lastName: contact.lastName,
-            mail: contact.mail
-        }]);
-    }
+    const handleLogin = (userInfo) => {
+        setFeedback(`Logging in with username: ${userInfo.username}!`);
+    };
 
     return (
-        <>
-            <h1>Vite + React</h1>
-            <Form submitCallback={formSubmit}/>
-            <Contacts contact={contacts}/>
-        </>
-    )
-}
+        <div>
+            <h1>Login</h1>
+            <LoginForm onLogin={handleLogin} />
+            <p>{feedback}</p>
+        </div>
+    );
+};
 
-export default App
+export default App;
